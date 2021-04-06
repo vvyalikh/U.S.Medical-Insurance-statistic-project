@@ -24,7 +24,7 @@ load_data(smoker, 'insurance.csv', 'smoker')
 load_data(region, 'insurance.csv', 'region')
 load_data(charges, 'insurance.csv', 'charges')
 
-#1.bmi vs age
+#1.age groups
 #function to convert string to integer
 def age_integer(age):
     age_list = []
