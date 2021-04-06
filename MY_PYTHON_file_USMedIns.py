@@ -157,6 +157,7 @@ count_part_of_healthy_weight_patients = round((221 / 1318)*100, 0)
 charges_vs_bmi = {key:value for key, value in zip(charges_float_list,bmi_float_list1)}
 #print(charges_vs_bmi)
 
+#function to count bmi groups vs insurance charges correlation
 def count_charges_vs_bmi():
   charges_vs_bmi_list = {'charges_underweight_group':[],'charges_healthy_weight_group':[],'charges_overweight_group':[],'charges_obese_group':[]}
   for key, value in charges_vs_bmi.items():
@@ -182,16 +183,55 @@ average_charges_per_bmi_group = {k: round(sum_charges_per_bmi_group[k] / count_c
 #print(average_charges_per_bmi_group)
 
 #3.have children vs child free
+def children_integer(children):
+    children_list = []
+    for items in children:
+        items = int(items)
+        children_list.append(items)
+    return children_list
+
+children_int_list = (children_integer(children))
+#print(children_int_list)
+
+def have_children_list():
+  have_children_dict = {'no_kids':[],'have_kids':[]}
+  for items in children_int_list:
+    if items == 0:
+      have_children_dict['no_kids'].append(items)
+    else:
+      have_children_dict['have_kids'].append(items)
+  return have_children_dict
+
+have_vs_no_children_dict = have_children_list()
+#print(have_vs_no_children_dict)
+
+count_children = {k: len(v) for k,v in have_vs_no_children_dict.items()}
+#print(count_children)
+
+#kids/no kids vs insurance charge correlation
+charges_vs_children = {key:value for key, value in zip(charges_float_list,children_int_list)}
+#print(charges_vs_children)
+
+#function to count kids/no kids groups vs insurance charges correlation
+def count_charges_vs_kids():
+  charges_vs_kids_list = {'no_kids':[],'have_kids':[]}
+  for key, value in charges_vs_children.items():
+    if value == 0:
+      charges_vs_kids_list['no_kids'].append(key)
+    else:
+      charges_vs_kids_list['have_kids'].append(key)
+  return charges_vs_kids_list
 
 
+charges_vs_kids_dict = count_charges_vs_kids()
+#print(charges_vs_kids_dict)
 
-
-
-
-
-
-
-
+count_charges_vs_kids = {k: len(v) for k,v in charges_vs_kids_dict.items()}
+#print(count_charges_vs_kids)
+sum_charges_vs_kids = {k: round(sum(v),2) for k,v in charges_vs_kids_dict.items()}
+#print(sum_charges_vs_kids)
+average_charges_vs_kids = {k: round(sum_charges_vs_kids[k] / count_charges_vs_kids[k],2) for k in count_charges_vs_kids if k in sum_charges_vs_kids}
+#print(average_charges_vs_kids)
 
 
 #4.region groups
@@ -204,3 +244,29 @@ def unique_regions(region):
 
 #print(unique_regions(region))
 # in insurance.csv presented 4 regions southwest,southeast,northwest,northeast
+
+charges_vs_region = {key:value for key, value in zip(charges_float_list,region)}
+#print(charges_vs_region)
+
+#function to count regions vs insurance charges correlation
+def count_charges_vs_region():
+  charges_vs_region_list = {'south':[],'north':[]}
+  for key, value in charges_vs_region.items():
+    if value == 'southwest':
+      charges_vs_region_list['south'].append(key)
+    elif value == 'southeast':
+      charges_vs_region_list['south'].append(key)
+    else:
+      charges_vs_region_list['north'].append(key)
+  return charges_vs_region_list
+
+
+charges_vs_region_dict = count_charges_vs_region()
+#print(charges_vs_region_dict)
+
+count_charges_vs_regions = {k: len(v) for k,v in charges_vs_region_dict.items()}
+#print(count_charges_vs_regions)
+sum_charges_vs_regions = {k: round(sum(v),2) for k,v in charges_vs_region_dict.items()}
+#print(sum_charges_vs_regions)
+average_charges_vs_regions = {k: round(sum_charges_vs_regions[k] / count_charges_vs_regions[k],2) for k in count_charges_vs_regions if k in sum_charges_vs_regions}
+#print(average_charges_vs_regions)

@@ -145,7 +145,7 @@ def bmi_list():
 bmi_groups_dict = bmi_list()
 
 count_people_per_group = {k: len(v) for k,v in bmi_groups_dict.items()}
-print(count_people_per_group)
+#print(count_people_per_group)
 
 count_part_of_obese_patients = round((705 / 1318)*100, 0)
 #print(count_part_of_obese_patients)
@@ -173,20 +173,64 @@ def count_charges_vs_bmi():
 charges_vs_bmi_dict = count_charges_vs_bmi()
 #print(charges_vs_bmi_dict)
 
-
 count_charges_per_bmi_group = {k: len(v) for k,v in charges_vs_bmi_dict.items()}
-print(count_charges_per_bmi_group)
+#print(count_charges_per_bmi_group)
 sum_charges_per_bmi_group = {k: round(sum(v),2) for k,v in charges_vs_bmi_dict.items()}
-print(sum_charges_per_bmi_group)
+#print(sum_charges_per_bmi_group)
 average_charges_per_bmi_group = {k: round(sum_charges_per_bmi_group[k] / count_charges_per_bmi_group[k],2) for k in count_charges_per_bmi_group if k in sum_charges_per_bmi_group}
-print(average_charges_per_bmi_group)
-
-
-
-
-
+#print(average_charges_per_bmi_group)
 
 #3.have children vs child free
+def children_integer(children):
+    children_list = []
+    for items in children:
+        items = int(items)
+        children_list.append(items)
+    return children_list
+
+children_int_list = (children_integer(children))
+#print(children_int_list)
+
+def have_children_list():
+  have_children_dict = {'no_kids':[],'have_kids':[]}
+  for items in children_int_list:
+    if items == 0:
+      have_children_dict['no_kids'].append(items)
+    else:
+      have_children_dict['have_kids'].append(items)
+  return have_children_dict
+
+have_vs_no_children_dict = have_children_list()
+#print(have_vs_no_children_dict)
+
+count_children = {k: len(v) for k,v in have_vs_no_children_dict.items()}
+#print(count_children)
+
+#kids/no kids vs insurance charge correlation
+charges_vs_children = {key:value for key, value in zip(charges_float_list,children_int_list)}
+#print(charges_vs_children)
+
+#function to count kids/no kids groups vs insurance charges corelation
+def count_charges_vs_kids():
+  charges_vs_kids_list = {'no_kids':[],'have_kids':[]}
+  for key, value in charges_vs_children.items():
+    if value == 0:
+      charges_vs_kids_list['no_kids'].append(key)
+    else:
+      charges_vs_kids_list['have_kids'].append(key)
+  return charges_vs_kids_list
+
+
+charges_vs_kids_dict = count_charges_vs_kids()
+#print(charges_vs_kids_dict)
+
+count_charges_vs_kids = {k: len(v) for k,v in charges_vs_kids_dict.items()}
+#print(count_charges_vs_kids)
+sum_charges_vs_kids = {k: round(sum(v),2) for k,v in charges_vs_kids_dict.items()}
+#print(sum_charges_vs_kids)
+average_charges_vs_kids = {k: round(sum_charges_vs_kids[k] / count_charges_vs_kids[k],2) for k in count_charges_vs_kids if k in sum_charges_vs_kids}
+#print(average_charges_vs_kids)
+
 
 #4.region groups
 def unique_regions(region):
@@ -199,47 +243,37 @@ def unique_regions(region):
 #print(unique_regions(region))
 # in insurance.csv presented 4 regions southwest,southeast,northwest,northeast
 
-
-
-
-#print(count)
-
-
-
+charges_vs_region = {key:value for key, value in zip(charges_float_list,region)}
 #print(charges_vs_region)
 
-underweight = []
-healthy_weight = []
-overweight = []
-obese = []
+def count_charges_vs_region():
+  charges_vs_region_list = {'south':[],'north':[]}
+  for key, value in charges_vs_region.items():
+    if value == 'southwest':
+      charges_vs_region_list['south'].append(key)
+    elif value == 'southeast':
+      charges_vs_region_list['south'].append(key)
+    else:
+      charges_vs_region_list['north'].append(key)
+  return charges_vs_region_list
 
 
-def bmi_index_range(lst):
-  for items in bmi:
-    if items < 18.5:
-      underweight.append(items)
-    elif items > 18.5 and items < 24.9:
-      healthy_weight.append(items)
-    elif items > 25.0 and items < 29.9:
-      overweight.append(items)
-    elif items > 30.0:
-      obese.append(items)   
-  return lst
+charges_vs_region_dict = count_charges_vs_region()
+#print(charges_vs_region_dict)
 
-#print(bmi_index_range(underweight))  
+count_charges_vs_regions = {k: len(v) for k,v in charges_vs_region_dict.items()}
+#print(count_charges_vs_regions)
+sum_charges_vs_regions = {k: round(sum(v),2) for k,v in charges_vs_region_dict.items()}
+print(sum_charges_vs_regions)
+average_charges_vs_regions = {k: round(sum_charges_vs_regions[k] / count_charges_vs_regions[k],2) for k in count_charges_vs_regions if k in sum_charges_vs_regions}
+print(average_charges_vs_regions)
 
-def bmi_vs_region_list():
-  bmi_vs_region_dict = {'underweight':[],'healthy_weight':[],'overweight':[],'obese':[]}
-  for keys,values in bmi:
-    if keys < 18.5:
-      bmi_vs_region_dict['underweight'].append(values)
-    elif keys > 18.5 and keys < 24.9:
-      bmi_vs_region_dict['healthy_weight'].append(values)
-    elif keys > 25.0 and keys < 29.9:
-      bmi_vs_region_dict['overweight'].append(values)
-    elif keys > 30.0:
-      bmi_vs_region_dict['obese'].append(values) 
-  return bmi_vs_region_dict
 
-#print(bmi_vs_region_list())
+
+
+
+
+
+
+
 
