@@ -75,6 +75,7 @@ for item in age_int_list:
       group_N6 = group_N6 + 1
     
 #print('People quantity in each age group: group_N1: ' + str(group_N1) + ', group_N2: '+ str(group_N2) + ', group_N3: ' + str(group_N3)+ ', group_N4: '+ str(group_N4) + ', group_N5: '+ str(group_N5) + ', group_N6: ' + str(group_N6))
+
 def charges_float(charges):
     charges_list = []
     for items in charges:
@@ -115,13 +116,76 @@ average_charges_per_group = {k: round(sum_charges_per_group[k] / count_charges_p
 #print(average_charges_per_group)
 
 
-print('Average insurance charges for age group 35-44 is: ' + str(average_charges_per_group.get('charges_group_N3')))
-
-
-
+#print('Average insurance charges for age group 35-44 is: ' + str(average_charges_per_group.get('charges_group_N3')))
 
 
 #2.bmi groups
+def bmi_float(bmi):
+    bmi_float_list = []
+    for items in bmi:
+        items = float(items)
+        bmi_float_list.append(items)
+    return bmi_float_list
+
+bmi_float_list1 = bmi_float(bmi)
+
+def bmi_list():
+  bmi_dict = {'underweight':[],'healthy_weight':[],'overweight':[],'obese':[]}
+  for items in bmi_float_list1:
+    if items <= 18.5:
+      bmi_dict['underweight'].append(items)
+    elif items >= 18.6 and items <= 24.9:
+      bmi_dict['healthy_weight'].append(items)
+    elif items >= 25.0 and items <= 29.9:
+      bmi_dict['overweight'].append(items)
+    elif items >= 30.0:
+      bmi_dict['obese'].append(items) 
+  return bmi_dict
+
+bmi_groups_dict = bmi_list()
+
+count_people_per_group = {k: len(v) for k,v in bmi_groups_dict.items()}
+print(count_people_per_group)
+
+count_part_of_obese_patients = round((705 / 1318)*100, 0)
+#print(count_part_of_obese_patients)
+count_part_of_healthy_weight_patients = round((221 / 1318)*100, 0)
+#print(count_part_of_healthy_weight_patients)
+
+#bmi vs insurance charge correlation
+charges_vs_bmi = {key:value for key, value in zip(charges_float_list,bmi_float_list1)}
+#print(charges_vs_bmi)
+
+def count_charges_vs_bmi():
+  charges_vs_bmi_list = {'charges_underweight_group':[],'charges_healthy_weight_group':[],'charges_overweight_group':[],'charges_obese_group':[]}
+  for key, value in charges_vs_bmi.items():
+    if value <= 18.5:
+      charges_vs_bmi_list['charges_underweight_group'].append(key)
+    elif value >= 18.6 and value <= 24.9:
+      charges_vs_bmi_list['charges_healthy_weight_group'].append(key)
+    elif value >= 25 and value <= 29.9:
+      charges_vs_bmi_list['charges_overweight_group'].append(key)
+    elif value >= 30:
+      charges_vs_bmi_list['charges_obese_group'].append(key)
+  return charges_vs_bmi_list
+
+
+charges_vs_bmi_dict = count_charges_vs_bmi()
+#print(charges_vs_bmi_dict)
+
+
+count_charges_per_bmi_group = {k: len(v) for k,v in charges_vs_bmi_dict.items()}
+print(count_charges_per_bmi_group)
+sum_charges_per_bmi_group = {k: round(sum(v),2) for k,v in charges_vs_bmi_dict.items()}
+print(sum_charges_per_bmi_group)
+average_charges_per_bmi_group = {k: round(sum_charges_per_bmi_group[k] / count_charges_per_bmi_group[k],2) for k in count_charges_per_bmi_group if k in sum_charges_per_bmi_group}
+print(average_charges_per_bmi_group)
+
+
+
+
+
+
 #3.have children vs child free
 
 #4.region groups
