@@ -112,11 +112,11 @@ sum_charges_per_group = {k: round(sum(v),2) for k,v in charges_vs_age_dict.items
 average_charges_per_group = {k: round(sum_charges_per_group[k] / count_charges_per_group[k],2) for k in count_charges_per_group if k in sum_charges_per_group}
 #print(average_charges_per_group)
 
-print('Average insurance charges for age group 18-24 is: ' + str(average_charges_per_group.get('charges_group_N1')) + 
-'; for age group 25-34 is: ' + str(average_charges_per_group.get('charges_group_N2')) + '; for age group 35-44 is: ' 
-+ str(average_charges_per_group.get('charges_group_N3')) + '; for age group 45-54 is: '
- + str(average_charges_per_group.get('charges_group_N4')) + '; for age group 55-64 is: ' 
- + str(average_charges_per_group.get('charges_group_N5')))
+#print('Average insurance charges for age group 18-24 is: ' + str(average_charges_per_group.get('charges_group_N1')) + 
+#'; for age group 25-34 is: ' + str(average_charges_per_group.get('charges_group_N2')) + '; for age group 35-44 is: ' 
+#+ str(average_charges_per_group.get('charges_group_N3')) + '; for age group 45-54 is: '
+#+ str(average_charges_per_group.get('charges_group_N4')) + '; for age group 55-64 is: ' 
+#+ str(average_charges_per_group.get('charges_group_N5')))
 
 
 #2.bmi groups
@@ -146,7 +146,7 @@ def bmi_list():
 bmi_groups_dict = bmi_list()
 
 count_people_per_group = {k: len(v) for k,v in bmi_groups_dict.items()}
-print(count_people_per_group)
+#print(count_people_per_group)
 
 count_part_of_obese_patients = round((705 / 1318)*100, 0)
 #print(count_part_of_obese_patients)
@@ -270,3 +270,28 @@ sum_charges_vs_regions = {k: round(sum(v),2) for k,v in charges_vs_region_dict.i
 #print(sum_charges_vs_regions)
 average_charges_vs_regions = {k: round(sum_charges_vs_regions[k] / count_charges_vs_regions[k],2) for k in count_charges_vs_regions if k in sum_charges_vs_regions}
 #print(average_charges_vs_regions)
+
+#5. smokers
+
+charges_vs_smokers = {key:value for key, value in zip(charges_float_list,smoker)}
+#print(charges_vs_smokers)
+
+
+#function to count smoker status vs insurance charges correlation
+def count_charges_vs_smokers():
+  charges_vs_smokers_list = {'not_smokers':[],'smokers':[]}
+  for key, value in charges_vs_smokers.items():
+    if value == 'no':
+      charges_vs_smokers_list['not_smokers'].append(key)
+    else:
+      charges_vs_smokers_list['smokers'].append(key)
+  return charges_vs_smokers_list
+
+
+charges_vs_smokers_dict = count_charges_vs_smokers()
+count_smokers_notsmokers = {k: len(v) for k,v in charges_vs_smokers_dict.items()}
+print(count_smokers_notsmokers)
+sum_smokers_notsmokers = {k: round(sum(v),2) for k,v in charges_vs_smokers_dict.items()}
+print(sum_smokers_notsmokers)
+average_smokers_notsmokers = {k: round(sum_smokers_notsmokers[k] / count_smokers_notsmokers[k],2) for k in count_smokers_notsmokers if k in sum_smokers_notsmokers}
+print(average_smokers_notsmokers)
