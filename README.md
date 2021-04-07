@@ -27,16 +27,16 @@ so I will not use group_N6 in my further research.
 
 Age groups: group_N1: 278, group_N2: 271, group_N3: 260, group_N4: 287, group_N5: 242, group_N6: 0
 
-Next what I've investigated, what is average price of insurance for each average group.
+Next what I've investigated, what is average price of insurance for each age group.
 
-Average insurance charges 
+Average insurance charges per age group
 * for age group 18-24 is: 9037.95; 
 * for age group 25-34 is: 10352.39; 
 * for age group 35-44 is: 13134.17; 
 * for age group 45-54 is: 15853.93; 
 * for age group 55-64 is: 18513.28
 
-As we can see, there are direct correlation berween age and insurance charges, i.e.
+As we can see, there are direct correlation between age and insurance charges, i.e.
 less charges for younger persons and higher charges for older persons.
 
 2.bmi
@@ -77,9 +77,21 @@ region and insurance price:
 * 'south': 13608.77, 'north': 12928.61
 
 5. smokers
-{'not_smokers': 1063, 'smokers': 274}
-{'not_smokers': 8972421.91, 'smokers': 8781763.52}
-{'not_smokers': 8440.66, 'smokers': 32050.23}
+my research shows, that most people in the list are non-smoking.
+*  {'not_smokers': 1063, 'smokers': 274}
+
+the other conclusion I can make, smoking is very expansive habbit in USA
+*  {'not_smokers': 8440.66, 'smokers': 32050.23}
+
+Smokers pay for the insurance four times more than non-smokers, so there
+direct correlation between that.
+
+
+Conclusions: According to my calculations, based on data provided, the highest price for health insurance
+will have smoker person, over 55 with obesity. Here we have one factor nobody can change(like age) and
+two factors that people can change or improve. The main conclusion I can make, that healthy life style has not only have 
+health and wellbeing but also economic benefits =)
+
 
 
 
