@@ -7,6 +7,7 @@ I made statistic analyze based on data provided (insurance.csv):
 2. bmi groups vs insurance charges correlation
 3. have kids / no kids vs insurance charges correlation
 4. regions vs insurance charges correlation
+5. smokers/not smokers vs insurance charges correlation
 
 During my research I used csv module and functions to clean data and to find out
 if exist any correlation mentioned above.
@@ -75,7 +76,10 @@ After calculations made, I can conlude that there is no corelation between
 region and insurance price:
 * 'south': 13608.77, 'north': 12928.61
 
-
+5. smokers
+{'not_smokers': 1063, 'smokers': 274}
+{'not_smokers': 8972421.91, 'smokers': 8781763.52}
+{'not_smokers': 8440.66, 'smokers': 32050.23}
 
 
 
