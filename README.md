@@ -66,12 +66,14 @@ Average price is slightly different but I dont think that existence of kids
 has a huge impact on insurance price.
 
 4. region
+After filtering I realised that there are for unique regions in the list
+* 'southwest', 'southeast', 'northwest', 'northeast'.
+I was curious, if insurance prices on the south differ from insurance
+prices on the north.
+After calculations made, I can conlude that there is no corelation between
+region and insurance price:
+* 'south': 13608.77, 'north': 12928.61
 
-
-
-
-
-['southwest', 'southeast', 'northwest', 'northeast']
 
 
 
